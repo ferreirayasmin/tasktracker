@@ -1,0 +1,71 @@
+.about-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.about-card {
+  background-color: var(--surface-color);
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  max-width: 800px;
+  width: 100%;
+}
+
+.about-card h2 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.about-content {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.about-content p {
+  margin-bottom: 1rem;
+}
+
+.tech-list {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+  line-height: 1.8;
+}
+
+.tech-list li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.tech-list li::marker {
+  color: var(--primary-color);
+}
+
+.developer-info {
+  margin-top: 3rem;
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.developer-info h3 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.version {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--background-color);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
