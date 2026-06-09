@@ -1,14 +1,12 @@
-import React from 'react';
-import TaskForm from '../components/TaskForm';
 import { useNavigate } from 'react-router-dom';
+import TaskForm from '../components/TaskForm';
 import './CreateTask.css';
 
 function CreateTask({ addTask }) {
   const navigate = useNavigate();
 
-  const handleAddTask = (taskData) => {
-    addTask(taskData);
-    // Opcional: Redirecionar para o dashboard após um breve momento
+  const handleAddTask = async (taskData) => {
+    await addTask(taskData);
     setTimeout(() => {
       navigate('/');
     }, 1500);
@@ -20,8 +18,8 @@ function CreateTask({ addTask }) {
         <h2>Adicionar Nova Tarefa</h2>
         <p>Preencha os detalhes para atribuir uma nova atividade.</p>
       </header>
-      
-      <TaskForm addTask={handleAddTask} />
+
+      <TaskForm onSubmit={handleAddTask} mode="create" />
     </div>
   );
 }

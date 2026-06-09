@@ -1,0 +1,13 @@
+.edit-task-page .page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.edit-task-page .page-header h2 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.edit-task-page .page-header p {
+  color: var(--text-secondary);
+}

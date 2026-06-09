@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import './TaskList.css';
 
 function TaskList({ tasks, removeTask, toggleTaskStatus }) {
@@ -13,10 +13,30 @@ function TaskList({ tasks, removeTask, toggleTaskStatus }) {
 
   const getUrgencyClass = (urgency) => {
     switch (urgency) {
-      case 'Alta': return 'urgency-high';
-      case 'Média': return 'urgency-medium';
-      case 'Baixa': return 'urgency-low';
-      default: return '';
+      case 'Alta':
+        return 'urgency-high';
+      case 'Média':
+        return 'urgency-medium';
+      case 'Baixa':
+        return 'urgency-low';
+      default:
+        return '';
+    }
+  };
+
+  const handleDelete = async (taskId) => {
+    try {
+      await removeTask(taskId);
+    } catch (err) {
+      alert(err.message || 'Não foi possível excluir a tarefa.');
+    }
+  };
+
+  const handleToggle = async (taskId) => {
+    try {
+      await toggleTaskStatus(taskId);
+    } catch (err) {
+      alert(err.message || 'Não foi possível atualizar o status.');
     }
   };
 
@@ -30,22 +50,33 @@ function TaskList({ tasks, removeTask, toggleTaskStatus }) {
               {task.urgency}
             </span>
           </div>
-          
+
           <div className="task-body">
-            <p><strong>Responsável:</strong> {task.assignee}</p>
-            <p className="task-date">Adicionada em: {new Date(task.createdAt).toLocaleDateString('pt-BR')}</p>
+            <p>
+              <strong>Responsável:</strong> {task.assignee}
+            </p>
+            {task.createdAt && (
+              <p className="task-date">
+                Adicionada em: {new Date(task.createdAt).toLocaleDateString('pt-BR')}
+              </p>
+            )}
           </div>
-          
+
           <div className="task-actions">
-            <button 
+            <Link to={`/edit/${task.id}`} className="edit-btn">
+              Editar
+            </Link>
+            <button
+              type="button"
               className={`status-btn ${task.completed ? 'btn-undo' : 'btn-complete'}`}
-              onClick={() => toggleTaskStatus(task.id)}
+              onClick={() => handleToggle(task.id)}
             >
               {task.completed ? 'Desmarcar' : 'Concluir'}
             </button>
-            <button 
+            <button
+              type="button"
               className="delete-btn"
-              onClick={() => removeTask(task.id)}
+              onClick={() => handleDelete(task.id)}
             >
               Excluir
             </button>

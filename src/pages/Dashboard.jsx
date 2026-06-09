@@ -1,11 +1,25 @@
-import React from 'react';
 import TaskList from '../components/TaskList';
+import LoadingSpinner from '../components/LoadingSpinner';
+import ErrorAlert from '../components/ErrorAlert';
 import './Dashboard.css';
 
-function Dashboard({ tasks, removeTask, toggleTaskStatus }) {
-  const completedCount = tasks.filter(task => task.completed).length;
+function Dashboard({ tasks, loading, error, onRetry, removeTask, toggleTaskStatus }) {
+  const completedCount = tasks.filter((task) => task.completed).length;
   const totalCount = tasks.length;
   const pendingCount = totalCount - completedCount;
+
+  if (loading) {
+    return <LoadingSpinner message="Carregando tarefas da API..." />;
+  }
+
+  if (error) {
+    return (
+      <ErrorAlert
+        message={`Erro ao carregar tarefas: ${error}. Verifique se o back-end está rodando.`}
+        onRetry={onRetry}
+      />
+    );
+  }
 
   return (
     <div className="dashboard-container fade-in">
@@ -31,10 +45,10 @@ function Dashboard({ tasks, removeTask, toggleTaskStatus }) {
 
       <section className="tasks-section">
         <h3>Lista de Tarefas</h3>
-        <TaskList 
-          tasks={tasks} 
-          removeTask={removeTask} 
-          toggleTaskStatus={toggleTaskStatus} 
+        <TaskList
+          tasks={tasks}
+          removeTask={removeTask}
+          toggleTaskStatus={toggleTaskStatus}
         />
       </section>
     </div>
