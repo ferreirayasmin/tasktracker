@@ -20,10 +20,8 @@ function About() {
             <li>Vanilla CSS para estilização</li>
           </ul>
           <div className="developer-info">
-            <h3>Integrantes</h3>
-            <p>[Nome Integrante 1] — Front-end</p>
-            <p>[Nome Integrante 2] — Back-end</p>
-            <p>[Nome Integrante 3] — Banco de Dados</p>
+            <h3>Integrante</h3>
+            <p>Yasmin Ferreira</p>
             <p className="version">Versão Sprint 3</p>
           </div>
         </div>
